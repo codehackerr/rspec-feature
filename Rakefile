@@ -1,7 +1,7 @@
 require "bundler/gem_tasks"
 
-task :feature do
-  puts "welcome to rspec-feature"
+task :test do
+ sh('rspec --format nested')
 end
 
-task :default => :feature 
+task :default => :test 
