@@ -6,11 +6,11 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |spec|
   spec.name          = "rspec-feature"
   spec.version       = "0.0.1" 
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
+  spec.authors       = ["codehacker"]
+  spec.email         = ["code.rr@mail.com"]
+  spec.summary       = %q{Cucumber like Acceptance Test in RSpec.}
   spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/codehackerr/rspec-feature"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
