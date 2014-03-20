@@ -1,10 +1,10 @@
 require 'spec_helper'
 require 'rspec/feature/scenario_steps'
 
-describe "Example Group" do
+describe "scenario" do
  @step_invoked = false
 
- scenario "allows given step" do
+ scenario "allows 'given' step" do
 
   given "a step" do 
 
@@ -14,5 +14,14 @@ describe "Example Group" do
 
   @step_invoked.should be_true
 
+ end
+
+ scenario "step without block should be pending" do
+  reporter = double("reporter")
+  RSpec.configure do |config| 
+   config.instance_variable_set(:@reporter, reporter)
+  end
+  reporter.should_receive(:notify).with(:pending, self, :given, "no block", {})
+  given "no block"
  end
 end
