@@ -15,24 +15,25 @@ describe "scenario" do
 
  scenario "allows 'given' step" do
 
+  @reporter.should_receive(:notify).with(:step_started, self, :given, "a step", {})
+
   given "a step" do 
-
    @step_invoked =  true
-
   end
 
   @step_invoked.should be_true
 
  end
 
- scenario "step without block should be pending" do
+ scenario "step without block should be reported as pending" do
 
   @reporter.should_receive(:notify).with(:pending, self, :given, "without block", {})
 
   given "without block"
+
  end
 
- scenario "step with pending option" do 
+ scenario "step with pending option should be reported as pending" do 
 
   @reporter.should_receive(:notify).with(:pending, self, :given, "with block", {:pending => true})
 
@@ -40,5 +41,14 @@ describe "scenario" do
   end
 
  end
+
+ scenario "step with block and no options should report step started" do
+
+  @reporter.should_receive(:notify).with(:step_started, self, :given, "an empty block", {})
+  
+  given "an empty block" do
+  end
+ end
+
 
 end
