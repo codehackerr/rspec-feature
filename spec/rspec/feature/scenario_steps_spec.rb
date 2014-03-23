@@ -4,7 +4,7 @@ require 'rspec/feature/scenario_steps'
 describe "scenario" do
 
  before(:each) do 
-  @reporter = double("reporter")
+  @reporter = double("reporter").as_null_object
 
   RSpec.configure do |config| 
    config.instance_variable_set(:@reporter, @reporter)
@@ -15,7 +15,7 @@ describe "scenario" do
 
  scenario "allows 'given' step" do
 
-  @reporter.should_receive(:notify).with(:step_started, self, :given, "a step", {})
+  #@reporter.should_receive(:notify).with(:step_started, self, :given, "a step", {})
 
   given "a step" do 
    @step_invoked =  true
@@ -38,17 +38,24 @@ describe "scenario" do
   @reporter.should_receive(:notify).with(:pending, self, :given, "with block", {:pending => true})
 
   given "with block",:pending => true do
+ 
   end
-
  end
 
- scenario "step with block and no options should report step started" do
 
-  @reporter.should_receive(:notify).with(:step_started, self, :given, "an empty block", {})
+ context "step with block and no options" do 
+  scenario "should report step started" do
+   @reporter.should_receive(:notify).with(:step_started, self, :given, "an empty block", {})
   
-  given "an empty block" do
-  end
+   given "an empty block" do
+   end
  end
 
-
+  scenario "should report step succeeded" do
+   @reporter.should_receive(:notify).with(:step_succeeded, self, :given, "an empty block", {})
+  
+   given "an empty block" do
+   end
+  end
+ end
 end

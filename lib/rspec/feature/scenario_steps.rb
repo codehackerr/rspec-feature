@@ -3,6 +3,7 @@ def given(message, options = {})
  if block_given? && !options[:pending]
   notify(:step_started, self, :given, message, options) 
   yield
+  notify(:step_succeeded, self, :given, message, options) 
  else 
 
   notify(:pending, self,:given, message, options)
