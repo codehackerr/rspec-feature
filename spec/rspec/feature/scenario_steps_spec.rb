@@ -11,18 +11,16 @@ describe "scenario" do
   end
  end
 
- @step_invoked = false
 
  scenario "allows 'given' step" do
+  
+  given "a step"
 
-  #@reporter.should_receive(:notify).with(:step_started, self, :given, "a step", {})
+ end
 
-  given "a step" do 
-   @step_invoked =  true
-  end
-
-  @step_invoked.should be_true
-
+ scenario "step yields control to the block argument" do
+  
+  expect { |yield_probe| given("step message", &yield_probe) }.to yield_control
  end
 
  scenario "step without block should be reported as pending" do
