@@ -9,7 +9,6 @@ Gem::Specification.new do |spec|
   spec.authors       = ["codehacker"]
   spec.email         = ["code.rr@mail.com"]
   spec.summary       = %q{Cucumber like Acceptance Test in RSpec.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = "https://github.com/codehackerr/rspec-feature"
   spec.license       = "MIT"
 
@@ -20,4 +19,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
+  spec.add_dependency "rspec", ">= 2.0.0"
 end
